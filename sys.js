@@ -477,7 +477,7 @@ hours = 12;
 
 
 
-Client.on("message", message => {
+client.on("message", message => {
 
 		var args = message.content.split(' ').slice(1); 
 
