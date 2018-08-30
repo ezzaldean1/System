@@ -569,4 +569,68 @@ Client.on("message", message => {
 
 });
 
+
+
+
+            
+
+client.on('message' , message => {
+
+  if(message.author.bot) return;
+
+  if(message.content.startsWith(prefix + "send")) {
+
+    let args = message.content.split(" ").slice(1);
+
+    let suggestmessage = args.join(" ").slice(22);
+
+    let suggestchannel = message.mentions.channels.first();
+
+    if (!suggestchannel) {
+
+        return message.reply("Please Mention the channel!")
+
+    }
+
+    if (!suggestmessage) {
+
+        return message.reply("Plase Give Text To send Channel!")
+
+    
+
+         
+
+    }
+
+     message.delete();
+
+suggestchannel.send("@everyone  `||` @here ");
+
+    let embed = new Discord.RichEmbed()
+
+        .addField("**message**", `${suggestmessage}`)
+
+        .setFooter(`by ${message.author.tag}`)
+
+        .setTimestamp()
+
+    suggestchannel.send({
+
+        embed
+
+    }).then(msg => {
+
+        msg.react("✅").then(r => msg.react("❎"))
+
+    });
+
+    message.reply(`Your message is sended.`).then(msg => msg.delete(1000));
+
+    return;
+
+}
+
+});
+
+
 client.login(process.env.BOT_TOKEN);  //
