@@ -977,29 +977,12 @@ return;
 
 
 	   
-client.on('guildMemberAdd', member => {
 
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
 
-    const memberCount = [member.guild.memberCount] - [botCount]
 
-    client.channels.get('484720213984673804').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
 
-    client.channels.get('484720325242912788').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 
-});
 
-client.on('guildMemberRemove', member => {
-
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-
-    const memberCount = [member.guild.memberCount] - [botCount]
-
-    client.channels.get('484720213984673804').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-
-    client.channels.get('484720325242912788').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-
-});
 
 
 client.on('message', msg => { 
