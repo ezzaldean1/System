@@ -1036,7 +1036,7 @@ client.on('message', msg => {
 
 })
 
-Code Alphacopyright arrow_down            
+
 
 client.on('message', message => {
 
