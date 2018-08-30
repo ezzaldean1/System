@@ -688,7 +688,664 @@ message.channel.send(alpha);
 };
 
   });
+client.on('message', message => {
+
+      if(message.content === prefix + "hchannel") {
+
+      if(!message.channel.guild) return;
+
+      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You Dont Have Perms ❌');
+
+             message.channel.overwritePermissions(message.guild.id, {
+
+             READ_MESSAGES: false
+
+ })
+
+              message.channel.send('Channel Hided Successfully ! ✅  ')
+
+ }
+
+});
 
 
+
+client.on('message', message => {
+
+      if(message.content === prefix + "schannel") {
+
+      if(!message.channel.guild) return;
+
+      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('❌');
+
+             message.channel.overwritePermissions(message.guild.id, {
+
+             READ_MESSAGES: true
+
+ })
+
+              message.channel.send('Done  ')
+
+ }
+
+});
+
+
+
+client.on('message', message => {
+
+    var prefix = "-"
+
+  if (message.author.x5bz) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "ban") {
+
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+         
+
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
+
+  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+
+  let user = message.mentions.users.first();
+
+  let reason = message.content.split(" ").slice(2).join(" ");
+
+  /*let b5bzlog = client.channels.find("name", "5bz-log");
+
+  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
+
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+
+  if (!message.guild.member(user)
+
+  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).ban(7, user);
+
+  const banembed = new Discord.RichEmbed()
+
+  .setAuthor(`BANNED!`, user.displayAvatarURL)
+
+  .setColor("RANDOM")
+
+  .setTimestamp()
+
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+
+  message.channel.send({
+
+    embed : banembed
+
+  })
+
+}
+
+});
+
+client.on('message', message => {
+
+    var prefix = "-"
+
+  if (message.author.x5bz) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+         
+
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+
+  let user = message.mentions.users.first();
+
+  let reason = message.content.split(" ").slice(2).join(" ");
+
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+
+  if (!message.guild.member(user)
+
+  .kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+
+  .setAuthor(`KICKED!`, user.displayAvatarURL)
+
+  .setColor("RANDOM")
+
+  .setTimestamp()
+
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+
+  message.channel.send({
+
+    embed : kickembed
+
+  })
+
+}
+
+})
+
+   client.on('message', message => {
+
+       if(message.content === prefix + "mutechannel") {
+                           if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: false
+
+              }).then(() => {
+                  message.reply("**__تم تقفيل الشات__ ✅ **")
+              });
+                }
+//FIRE BOT
+    if(message.content === prefix + "unmutechannel") {
+                        if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: true
+
+              }).then(() => {
+                  message.reply("**__تم فتح الشات__✅**")
+              });
+    }
+       
+});
+
+        
+
+client.on('message', message => {
+
+     
+
+ if(message.content.startsWith(prefix +"server")){
+
+if(!message.channel.guild) return message.reply(' ');
+
+const millis = new Date().getTime() - message.guild.createdAt.getTime();
+
+const now = new Date();
+
+dateFormat(now, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+
+const verificationLevels = ['None', 'Low', 'Medium', 'Insane', 'Extreme'];
+
+const days = millis / 1000 / 60 / 60 / 24;
+
+let roles = client.guilds.get(message.guild.id).roles.map(r => r.name);
+
+var embed  = new Discord.RichEmbed()
+
+.setAuthor(message.guild.name, message.guild.iconURL)
+
+.addField("🆔 Server ID:", message.guild.id,true)
+
+.addField("📅 Created On", message.guild.createdAt.toLocaleString(),true)
+
+.addField("👑 Owned by",${message.guild.owner.user.username}#${message.guild.owner.user.discriminator})
+
+.addField("👥 Members ",[${message.guild.memberCount}],true)
+
+.addField('💬 Channels ',**${message.guild.channels.filter(m => m.type === 'text').size}** + ' text | Voice  '+ **${message.guild.channels.filter(m => m.type === 'voice').size}**,true)
+
+.addField("🌍 Others " , message.guild.region,true)
+
+.addField(" 🔐 Roles ",**[${message.guild.roles.size}]** Role,true)
+
+.setColor('#000000')
+
+message.channel.sendEmbed(embed)
+
+}
+
+});
+
+client.on('message', message => {
+
+  if (message.guild) {
+
+ let embed = new Discord.RichEmbed()
+
+  let args = message.content.split(' ').slice(1).join(' ');
+
+if(message.content.split(' ')[0] == prefix + 'bc') {
+
+  if (!args[1]) {
+
+message.channel.send("**^bc <message>**");
+
+return;
+
+}
+
+      message.guild.members.forEach(m => {
+
+ if(!message.member.hasPermission('ADMINISTRATOR')) return;
+
+          var bc = new Discord.RichEmbed()
+
+          .setAuthor(message.author.username, message.author.avatarURL)
+
+          .addField(' The server', `${message.guild.name}`, true)
+
+          .addField(' who sended the messege ', `${message.author.username}!${message.author.discriminator}`, true)
+
+          .addField(' the messege ', args)
+
+          .setThumbnail(message.guild.iconURL)
+
+          .setColor('RANDOM')
+
+          m.send(`${m}`,{embed: bc});
+
+      });
+
+      const unknown = new Discord.RichEmbed()
+
+      .setAuthor(message.author.username, message.author.avatarURL)
+
+      .setTitle('✅| the messege is loading ')
+
+      .addBlankField(true)
+
+      .addField('♨| i got sended to  ', message.guild.memberCount , true)
+
+      .addField('📝| the message ', args)
+
+      .setColor('RANDOM')
+
+      message.channel.sendEmbed(embed);
+
+  }
+
+  } else {
+
+      return;
+
+  }
+
+});
+
+
+
+	   
+client.on('guildMemberAdd', member => {
+
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+
+    const memberCount = [member.guild.memberCount] - [botCount]
+
+    client.channels.get('484720213984673804').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+
+    client.channels.get('484720325242912788').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+
+});
+
+client.on('guildMemberRemove', member => {
+
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+
+    const memberCount = [member.guild.memberCount] - [botCount]
+
+    client.channels.get('484720213984673804').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+
+    client.channels.get('484720325242912788').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+
+});
+
+
+client.on('message', msg => { 
+
+    if (msg.content.startsWith(`-warn`)) {
+
+      if(!msg.member.hasPermission("MANAGE_MESSAGES")) return;
+
+       let args = msg.content.split(" ").slice(1);
+
+      if (!msg.mentions.members.first()) return msg.reply('منشن الشخص المحدد')
+
+      if (!args[0]) return msg.reply('اكتب السبب')
+
+      //غير اسم الروم او سوي روم بذا الاسم 
+
+      if (msg.guild.channels.find('name', 'warns')) {
+
+        //اذا غيرت فوق غير هنا كمان 
+
+        msg.guild.channels.find('name', 'warns').send(`
+
+      تم اعطائك انذار : ${msg.mentions.members.first()}
+
+      لأنك قمت بما يلي
+
+      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
+
+      `)
+
+      }
+
+    }
+
+})
+
+Code Alphacopyright arrow_down            
+
+client.on('message', message => {
+
+  
+
+        if(message.content.startsWith(prefix + 'deafen')) {
+
+      if (message.mentions.users.size === 0 && message.mentions.roles.size === 0) {
+
+        return message.reply('**يجب عليك المنشن اولاّ**❌').catch(console.error);
+
+      }
+
+      if (!message.guild.member(client.user).hasPermission('DEAFEN_MEMBERS')) {
+
+        return message.reply('للأسف البوت لا يمتلك صلاحيات لتنفيذ هذه الأمر**❌').catch(console.error);
+
+      }
+
+     
+
+      const deafenMember = (member) => {
+
+        if (!member || !member.voiceChannel) return;
+
+        if (member.serverDeaf) return message.channel.send(`${member} **لديه ديفن بالفعل**:x:`);
+
+        member.setDeaf(true).catch(console.error);
+
+        if(!message.member.hasPermission("DEAFEN_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ديفن **❌ ").then(m => m.delete(5000));
+
+      };
+
+     
+
+      message.mentions.users.forEach(user => deafenMember(message.guild.member(user)));
+
+      message.mentions.roles.forEach(role => role.members.forEach(member => deafenMember(member)));
+
+        }
+
+        
+
+    });
+
+client.on('message', async message =>{
+
+  
+
+      if(message.content.startsWith(prefix + 'undeafen')) {
+
+     
+
+    if (message.mentions.users.size === 0 && message.mentions.roles.size === 0) {
+
+      return message.reply('**يجب عليك المنشن اولاّ**❌').catch(console.error);
+
+    }
+
+    if (!message.guild.member(client.user).hasPermission('DEAFEN_MEMBERS')) {
+
+      return message.reply('**للأسف البوت لا يمتلك صلاحيات لتنفيذ هذه الأمر**❌ ').catch(console.error);
+
+      if(!message.member.hasPermission("DEAFEN_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ديفن **❌ ").then(m => m.delete(5000));
+
+    }
+
+     
+
+    const undeafenMember = (member) => {
+
+      if (!member || !member.voiceChannel) return;
+
+      if (!member.serverDeaf) return message.channel.send(`${member} `);
+
+      member.setDeaf(false).catch(console.error);
+
+    };
+
+     
+
+    message.mentions.users.forEach(user => undeafenMember(message.guild.member(user)));
+
+    message.mentions.roles.forEach(role => role.members.forEach(member => undeafenMember(member)));
+
+    }
+
+    });
+client.on('message', message => {
+
+  
+
+        if(message.content.startsWith(prefix + 'mutevoice')) {
+
+          if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ميوت صوتي**❌ ").then(m => m.delete(5000));
+
+          if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I Don't Have `MUTE_MEMBERS` Permission**").then(msg => msg.delete(6000))
+
+           
+
+        if(message.mentions.users.size === 0) {
+
+          return message.reply("Please mention a user to mute.");
+
+        }
+
+        let muteMember = message.guild.member(message.mentions.users.first());
+
+        if(!muteMember) {
+
+          return message.reply("Try again.");
+
+        }
+
+        muteMember.setMute(true);
+
+        if(muteMember) {
+
+          message.channel.sendMessage("User muted successfully.");
+
+        }
+
+      }
+
+    });
+
+client.on('message',message =>{
+
+    
+
+    if(message.content.startsWith(prefix + 'top')) {
+
+  message.guild.fetchInvites().then(i =>{
+
+  var invites = [];
+
+   
+
+  i.forEach(inv =>{
+
+    var [invs,i]=[{},null];
+
+     
+
+    if(inv.maxUses){
+
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+
+    }else{
+
+        invs[inv.code] =+ inv.uses;
+
+    }
+
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+
+   
+
+  });
+
+  var embed = new Discord.RichEmbed()
+
+  .setColor("#000000")
+
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+
+  .setThumbnail("https://i.imgur.com/OM00xyh.png")
+
+           message.channel.send({ embed: embed });
+
+   
+
+  });
+
+   
+
+    }
+
+  });
+const misaka = new Set();
+
+    client.on('message', async msg => {
+
+  if(msg.content.startsWith("رابط")) {
+
+  if (misaka.has(msg.author.id)) {
+
+    let misakaemb = new Discord.RichEmbed()
+
+    .setDescription(`يجب عليك الانتظار 24 ساعه!`)
+
+    .setColor(`RED`)
+
+    return msg.channel.send(misakaemb).then(message => {
+
+     message.delete(10000) 
+
+    })
+
+    
+
+    }
+
+    misaka.add(msg.author.id);
+
+  
+
+   msg.channel.createInvite({
+
+        thing: true,
+
+        maxUses: 5,
+
+        maxAge: 86400,
+
+  }).then(invite =>
+
+   msg.author.sendMessage(`
+
+         <@${msg.author.id}> 
+
+         **maxUses: 5 **
+
+         ${invite.url}`)
+
+  )
+
+    msg.channel.send(`**:link: Invite Linke Sent In DM Successfully**`)
+
+  }
+
+    setTimeout(() => {
+
+    },86400000);
+
+    })
+
+client.on('message', message => {
+
+     if(message.content.startsWith(prefix + "clear")) {
+
+         var args = message.content.split(" ").slice(1);
+
+ if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You need MANAGE_MESSAGES permission noob');
+
+  if (!args[0]) return message.channel.send('You didn\'t provide any number!!!');
+
+  message.channel.bulkDelete(args[0]).then(() => {
+
+    const embed = new Discord.RichEmbed()
+
+      .setColor(0xF16104)
+
+      .setDescription(`Cleared ${args[0]} messages.`);
+
+    message.channel.send({ embed });
+
+    const actionlog = message.guild.channels.find('name', 'logs');
+
+    if (!actionlog) return message.channel.send('Can\'t find action-log channel. Are you sure that this channel exists and I have permission to view it? **CANNOT POST LOG.**');
+
+    const embedlog = new Discord.RichEmbed()
+
+      .setDescription('~Purge~')
+
+      .setColor(0xF16104)
+
+      .addField('Purged By', `<@${message.author.id}> with ID ${message.author.id}`)
+
+      .addField('Purged in', message.channel)
+
+      .addField('Time', message.createdAt);
+
+    actionlog.send(embedlog);
+
+   
+
+  });
+
+};
+
+});
 
 client.login(process.env.BOT_TOKEN);  //
