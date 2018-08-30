@@ -149,7 +149,7 @@ const w = ['./w1.png'];
 
                         ctx.textAlign = "center";
 
-                        ctx.fillText(`welcome to Brix`, 300, 130);
+                        ctx.fillText(`welcome to server`, 300, 130);
 
                        
 
