@@ -918,7 +918,7 @@ var embed  = new Discord.RichEmbed()
 
 .addField("📅 Created On", message.guild.createdAt.toLocaleString(),true)
 
-.addField("👑 Owned by",${message.guild.owner.user.username}#${message.guild.owner.user.discriminator})
+
 
 .addField("👥 Members ",[${message.guild.memberCount}],true)
 
